@@ -1,0 +1,94 @@
+body{
+    
+    background-color: #C2F8F6;
+
+}
+table{
+    border-collapse: collapse;
+}
+
+th,td{
+
+    border: 1px solid black;
+
+}
+h1{
+  
+}
+img{
+
+    width: 480px;
+    height: 220;
+}
+
+p{
+    margin: 7px;
+    color: rgb(86, 86, 86);
+    
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    display: flex;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+.kontakt {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f2fafa;
+    border-radius: 3px;
+}
+
+.kontakt h2 {
+    text-align: center;
+}
+
+.kontakt form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.kontakt label {
+    width: 50%;
+}
+
+.kontakt input {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 3px;
+}
+
+.kontakt input[type="color"] {
+    height: 40px;
+    padding: 3px;
+}
+
+.kontakt button {
+    width: 50%;
+    padding: 10px;
+    background-color: #C2F8F6;
+    border: 1px solid #999;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.kontakt button:hover {
+    background-color: #9DEAE6;
+}

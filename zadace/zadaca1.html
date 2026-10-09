@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Skriptni jezici</title>
+</head>
+<body>
+ <nav>
+        <ul>
+            <li><a href="sport.html">Sport</a></li>
+            <li><a href="vijesti.html">Vijesti</a></li>
+            <li><a href="novac.html">Novac</a></li>
+        </ul>
+    </nav>
+
+
+
+    <h1>Ponavljanje Canvas i SVG</h1>
+
+    <p> <i>Canvas</i>je oznaka (tag) HTML5 standarda namijenjena crtanju.
+Canvas je 2D crtaća platforma unutar web preglednika, a koristi JavaScript i HTML.
+Upotrebom JavaScript-a se može pristupiti čitavom setu funkcija za crtanje linija,
+pravokutnika, lukova, crta, teksta …
+On nema vlastiti sadržaj, a od parametara ima samo dimenzije.</p>
+<br>
+
+
+<ul>
+        <li>Canvas API (API - Application Programming Interface - aplikacijsko programsko
+         sučelje) osigurava alate za crtanje grafike putem JavaScript-a i HTML &lt;canvas&gt;
+         elementa.</li>
+        <li>Canvas API je uglavnom namijenjen 2D crtanju, iako postoji mogućnost rada i sa 3D
+         grafikom preko WebGL API –ja</li>
+        <li>Crtanje grafike s pomoću oznake &lt;canvas&gt; kombinira poznavanje HTML-a, CSS-a i
+         JavaScripta, pa ćemo njega učiti sljedećem poglavlju.</li>
+    </ul>
+
+    <br>
+    <hr>
+
+   <p> SVG (Scalable Vector Graphics) većinom je manje težine u usporedbi sa Bitmap rasterskom
+slikom, koja posjeduje otprilike iste rezoluciju i grafički prikaz.
+Uključivanje SVG-a u HTML dokument omogućava naknadno stiliziranje grafike putem CSS-a,
+ali i manipulaciju JavaScript-om. Tako možemo promijeniti svojstva, kao što su: boja
+pozadine, teksta, okvira, na isti način kao i za bilo koji HTML element.
+Zbog toga je omogućeno i animirati sve SVG objekte preko JavaScript biblioteke kao što je
+jQuery.
+</p>
+
+<hr>
+<br>
+
+<h3>Usporedba SVG-a i Canvasa</h3>
+
+<table >
+    <tr>
+        <th>Category</th>
+        <th>canvas</th>
+        <th>SVG</th>
+    </tr>
+    <tr>
+        <td>Supporting<br>elements</td>
+        <td>Bitmap, based on pixels</td>
+        <td>Vector illustration,<br>based on graphic<br>elements</td>
+    </tr>
+    <tr>
+        <td>Operation<br>object</td>
+        <td>Single HTML element</td>
+        <td>Various graphic ele-<br>ments</td>
+    </tr>
+    <tr>
+        <td>Driver</td>
+        <td>JavaScript and other<br>script driven</td>
+        <td>Script or CSS driven</td>
+    </tr>
+</table>
+<br>
+
+<table >
+    <tr>
+        <th>Mjesec</th>
+        <th>Ušteda</th>
+        <th>Ušteda za blagdane!</th>
+    </tr>
+    <tr>
+        <td>Siječanj</td>
+        <td>$100</td>
+        <td>$50</td>
+    </tr>
+    <tr>
+        <td>Veljača</td>
+        <td>$80</td>
+        <td></td>
+        
+    </tr>
+</table>
+
+<img src="Untitled.png" alt="slika1">
+
+<section class="kontakt">
+    <h2>Kontakt forma</h2>
+
+    <form action="uspjeh.html" method="get">
+        <label for="ime">Ime:</label>
+        <input type="text" id="ime" name="ime" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="boja">Odaberi boju:</label>
+        <input type="color" id="boja" name="boja" value="#C2F8F6">
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</section>
+    
+</body>
+</html>
