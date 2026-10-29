@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Promjena slike</title>
+  </head>
+  <body>
+    <h2>Promjena slike pomoću DOM-a</h2>
+
+    <img id="slika" src="slika1.jpg" alt="Prva slika" width="300" />
+
+    <br /><br />
+
+    <button onclick="promijeniSliku()">Promijeni sliku</button>
+
+    <script>
+      function promijeniSliku() {
+        let slika = document.getElementById("slika");
+        slika.src = "slika2.jpg";
+        slika.alt = "Druga slika";
+      }
+    </script>
+  </body>
+</html>

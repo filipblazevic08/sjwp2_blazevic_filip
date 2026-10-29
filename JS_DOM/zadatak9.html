@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prikaži ili sakrij tekst</title>
+  </head>
+  <body>
+    <p id="tekst">
+      Ovo je odlomak koji možemo sakriti i ponovno prikazati klikom na gumb.
+    </p>
+
+    <button onclick="prikaziSakrij()">Sakrij / prikaži</button>
+
+    <script>
+      function prikaziSakrij() {
+        const tekst = document.getElementById("tekst");
+
+        if (tekst.style.display === "none") {
+          tekst.style.display = "block";
+        } else {
+          tekst.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

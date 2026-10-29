@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Promjena poveznice</title>
+  </head>
+  <body>
+    <h2>Promjena poveznice pomoću DOM-a</h2>
+
+    <a id="poveznica" href="https://www.google.com"> Otvori Google </a>
+
+    <br /><br />
+
+    <button onclick="promijeniPoveznicu()">Promijeni poveznicu</button>
+
+    <script>
+      function promijeniPoveznicu() {
+        let poveznica = document.getElementById("poveznica");
+
+        poveznica.href = "https://www.youtube.com";
+        poveznica.textContent = "Otvori YouTube";
+      }
+    </script>
+  </body>
+</html>
