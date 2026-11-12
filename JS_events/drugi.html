@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zadatak 2 – Reakcija na tipkovnicu</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+      }
+      input {
+        padding: 10px;
+        font-size: 1rem;
+        width: 300px;
+      }
+      .info {
+        margin-top: 15px;
+        font-size: 1.1rem;
+      }
+      #poruka {
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reakcija na tipkovnicu</h1>
+    <p>
+      Klikni u polje ispod i pritisni neku tipku (probaj
+      <strong>Enter</strong> ili <strong>Escape</strong>):
+    </p>
+
+    <input type="text" id="poljeUnosa" placeholder="Upiši nešto..." />
+
+    <div class="info">
+      Zadnja pritisnuta tipka: <strong id="prikazTipke">-</strong>
+    </div>
+    <div class="info" id="poruka"></div>
+
+    <script>
+      const poljeUnosa = document.getElementById("poljeUnosa");
+      const prikazTipke = document.getElementById("prikazTipke");
+      const poruka = document.getElementById("poruka");
+
+      // 1. Slušaj događaj keydown na dokumentu
+      document.addEventListener("keydown", function (event) {
+        // Dodatno: ignoriraj tipke ako fokus nije u polju za unos
+        if (document.activeElement !== poljeUnosa) {
+          return;
+        }
+
+        // 4. i 5. Ispiši naziv pritisnute tipke u zaseban element koristeći event.key
+        prikazTipke.textContent = event.key;
+
+        // 2. Ako korisnik pritisne Enter, prikaži poruku "Potvrđeno"
+        if (event.key === "Enter") {
+          poruka.textContent = "Potvrđeno";
+        }
+        // 3. Ako pritisne Escape, očisti polje za unos
+        else if (event.key === "Escape") {
+          poljeUnosa.value = "";
+          poruka.textContent = ""; // Brišemo i poruku potvrde ako je postojala
+        }
+      });
+    </script>
+  </body>
+</html>

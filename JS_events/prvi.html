@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zadatak 1 – Brojač klikova</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #prikazBroja {
+        font-size: 3rem;
+        font-weight: bold;
+        margin: 20px 0;
+      }
+      button {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      #upozorenje {
+        color: red;
+        font-weight: bold;
+        margin-top: 15px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Brojač klikova</h1>
+
+    <div id="prikazBroja">0</div>
+
+    <button id="btnPlus">+</button>
+    <button id="btnMinus">−</button>
+    <button id="btnReset">Reset</button>
+
+    <p id="upozorenje"></p>
+
+    <script>
+      let brojac = 0;
+
+      const prikazBroja = document.getElementById("prikazBroja");
+      const upozorenje = document.getElementById("upozorenje");
+      const btnPlus = document.getElementById("btnPlus");
+      const btnMinus = document.getElementById("btnMinus");
+      const btnReset = document.getElementById("btnReset");
+
+      function azurirajPrikaz() {
+        prikazBroja.textContent = brojac;
+
+        if (brojac < 0) {
+          upozorenje.textContent = "Upozorenje: Broj je negativan!";
+        } else {
+          upozorenje.textContent = "";
+        }
+      }
+
+      btnPlus.addEventListener("click", function () {
+        brojac++;
+        azurirajPrikaz();
+      });
+
+      btnMinus.addEventListener("click", function () {
+        brojac--;
+        azurirajPrikaz();
+      });
+
+      btnReset.addEventListener("click", function () {
+        brojac = 0;
+        azurirajPrikaz();
+      });
+    </script>
+  </body>
+</html>
