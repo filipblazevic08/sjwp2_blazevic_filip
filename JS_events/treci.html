@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+</head>
+<body>
+
+    <h2>Jednostavni kalkulator</h2>
+
+    <input type="number" id="broj1" placeholder="Prvi broj">
+    
+    <input type="number" id="broj2" placeholder="Drugi broj">
+
+    <select id="operacija">
+        <option value="zbroji">Zbrajanje (+)</option>
+        <option value="oduzmi">Oduzimanje (-)</option>
+        <option value="pomnozi">Množenje (*)</option>
+        <option value="podijeli">Dijeljenje (/)</option>
+    </select>
+
+    <button onclick="izracunaj()">Izračunaj</button>
+
+    <h3 id="rezultat">Rezultat: </h3>
+
+    <script>
+     
+
+        function zbroji(a, b) {
+            return a + b;
+        }
+
+        function oduzmi(a, b) {
+            return a - b;
+        }
+
+        function pomnozi(a, b) {
+            return a * b;
+        }
+
+        function podijeli(a, b) {
+            if (b === 0) {
+                throw new Error("Nije dozvoljeno dijeljenje s nulom!");
+            }
+
+            return a / b;
+        }
+
+     
+
+        function izvrsi(a, b, operacija) {
+            return operacija(a, b);
+        }
+
+     
+
+        function izracunaj() {
+            const a = document.getElementById("broj1").value;
+            const b = document.getElementById("broj2").value;
+            const odabranaOperacija = document.getElementById("operacija").value;
+
+            const rezultat = document.getElementById("rezultat");
+
+            if (a === "" || b === "") {
+                rezultat.textContent = "Unesite oba broja!";
+                return;
+            }
+
+            const broj1 = Number(a);
+            const broj2 = Number(b);
+
+            if (!Number.isFinite(broj1) || !Number.isFinite(broj2)) {
+                rezultat.textContent = "Neispravan unos!";
+                return;
+            }
+
+            
+            let callback;
+
+            switch (odabranaOperacija) {
+                case "zbroji":
+                    callback = zbroji;
+                    break;
+
+                case "oduzmi":
+                    callback = oduzmi;
+                    break;
+
+                case "pomnozi":
+                    callback = pomnozi;
+                    break;
+
+                case "podijeli":
+                    callback = podijeli;
+                    break;
+            }
+
+            try {
+                const vrijednost = izvrsi(broj1, broj2, callback);
+                rezultat.textContent = "Rezultat: " + vrijednost;
+            } catch (error) {
+                rezultat.textContent = error.message;
+            }
+        }
+    </script>
+
+</body>
+</html>

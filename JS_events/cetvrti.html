@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Popis proizvoda</title>
+</head>
+<body>
+
+    <h1>Popis proizvoda</h1>
+
+    <button onclick="prikaziSve()">Svi proizvodi</button>
+    <button onclick="prikaziSkupe()">Proizvodi skuplji od 50 €</button>
+    <button onclick="prikaziKategoriju('Elektronika')">
+        Elektronika
+    </button>
+    <button onclick="prikaziKategoriju('Odjeca')">
+        Odjeća
+    </button>
+    <button onclick="prikaziKategoriju('Namjestaj')">
+        Namještaj
+    </button>
+
+    <h2>Proizvodi:</h2>
+    <div id="proizvodi"></div>
+
+    <h2>Nazivi svih proizvoda:</h2>
+    <p id="nazivi"></p>
+
+    <script>
+
+        
+
+        const proizvodi = [
+            {
+                naziv: "Laptop",
+                cijena: 850,
+                kategorija: "Elektronika",
+                stanjeZalihe: 10
+            },
+            {
+                naziv: "Mobitel",
+                cijena: 600,
+                kategorija: "Elektronika",
+                stanjeZalihe: 15
+            },
+            {
+                naziv: "Majica",
+                cijena: 25,
+                kategorija: "Odjeca",
+                stanjeZalihe: 30
+            },
+            {
+                naziv: "Hlace",
+                cijena: 55,
+                kategorija: "Odjeca",
+                stanjeZalihe: 20
+            },
+            {
+                naziv: "Stolica",
+                cijena: 75,
+                kategorija: "Namjestaj",
+                stanjeZalihe: 8
+            },
+            {
+                naziv: "Stol",
+                cijena: 120,
+                kategorija: "Namjestaj",
+                stanjeZalihe: 5
+            }
+        ];
+
+   
+
+        function ispisiProizvode(lista) {
+
+            const div = document.getElementById("proizvodi");
+
+            div.innerHTML = "";
+
+            lista.forEach(function(proizvod) {
+
+                div.innerHTML += `
+                    <p>
+                        Naziv: ${proizvod.naziv} <br>
+                        Cijena: ${proizvod.cijena} € <br>
+                        Kategorija: ${proizvod.kategorija} <br>
+                        Stanje zalihe: ${proizvod.stanjeZalihe}
+                    </p>
+                    <hr>
+                `;
+
+            });
+        }
+
+      
+
+        function prikaziSve() {
+            ispisiProizvode(proizvodi);
+        }
+
+        
+
+        function prikaziSkupe() {
+
+            const skupiProizvodi = proizvodi.filter(
+                function(proizvod) {
+                    return proizvod.cijena > 50;
+                }
+            );
+
+            ispisiProizvode(skupiProizvodi);
+        }
+
+        
+
+        const naziviProizvoda = proizvodi.map(
+            function(proizvod) {
+                return proizvod.naziv;
+            }
+        );
+
+        document.getElementById("nazivi").textContent =
+            naziviProizvoda.join(", ");
+
+
+        function prikaziKategoriju(kategorija) {
+
+            const filtriraniProizvodi = proizvodi.filter(
+                function(proizvod) {
+                    return proizvod.kategorija === kategorija;
+                }
+            );
+
+            ispisiProizvode(filtriraniProizvodi);
+        }
+
+        
+
+        prikaziSve();
+
+    </script>
+
+</body>
+</html>

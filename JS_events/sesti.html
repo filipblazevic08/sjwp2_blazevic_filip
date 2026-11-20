@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Evidencija učenika</title>
+</head>
+<body>
+
+    <h1>Evidencija učenika</h1>
+
+    <div id="ucenici"></div>
+
+    <h2>Dodaj novu ocjenu</h2>
+
+    <label>Odaberi učenika:</label>
+    <select id="odabirUcenika">
+        <option value="0">Ivan Horvat</option>
+        <option value="1">Ana Marić</option>
+        <option value="2">Marko Kovač</option>
+    </select>
+
+    <br><br>
+
+    <label>Nova ocjena:</label>
+    <input type="number" id="novaOcjena" min="1" max="5">
+
+    <button onclick="dodajOcjenuUceniku()">
+        Dodaj ocjenu
+    </button>
+
+    <p id="poruka"></p>
+
+    <script>
+        // Konstruktor Ucenik
+        function Ucenik(ime, prezime, razred, ocjene) {
+            this.ime = ime;
+            this.prezime = prezime;
+            this.razred = razred;
+            this.ocjene = ocjene;
+
+            // Metoda za izračun prosjeka
+            this.izracunajProsjek = function() {
+                if (this.ocjene.length === 0) {
+                    return 0;
+                }
+
+                let suma = 0;
+
+                for (let i = 0; i < this.ocjene.length; i++) {
+                    suma += this.ocjene[i];
+                }
+
+                return (suma / this.ocjene.length).toFixed(2);
+            };
+
+            // Metoda za dodavanje ocjene
+            this.dodajOcjenu = function(ocjena) {
+                if (ocjena < 1 || ocjena > 5 ||
+                    !Number.isInteger(ocjena)) {
+                    return false;
+                }
+
+                this.ocjene.push(ocjena);
+                return true;
+            };
+
+            // Metoda za prikaz podataka
+            this.prikaziPodatke = function() {
+                return `
+                    <div>
+                        <h3>${this.ime} ${this.prezime}</h3>
+                        <p>Razred: ${this.razred}</p>
+                        <p>Ocjene: ${this.ocjene.join(", ")}</p>
+                        <p>Prosjek: ${this.izracunajProsjek()}</p>
+                    </div>
+                    <hr>
+                `;
+            };
+        }
+
+        // Stvaranje učenika pomoću new
+        let ucenici = [
+            new Ucenik("Ivan", "Horvat", "1.A", [5, 4, 5, 3]),
+            new Ucenik("Ana", "Marić", "2.B", [5, 5, 4, 5]),
+            new Ucenik("Marko", "Kovač", "3.C", [3, 4, 2, 5])
+        ];
+
+        // Prikaz svih učenika na stranici
+        function prikaziUcenike() {
+            let ispis = "";
+
+            for (let i = 0; i < ucenici.length; i++) {
+                ispis += ucenici[i].prikaziPodatke();
+            }
+
+            document.getElementById("ucenici").innerHTML = ispis;
+        }
+
+        // Dodavanje ocjene odabranom učeniku
+        function dodajOcjenuUceniku() {
+            let indeks = Number(
+                document.getElementById("odabirUcenika").value
+            );
+
+            let ocjena = Number(
+                document.getElementById("novaOcjena").value
+            );
+
+            let poruka = document.getElementById("poruka");
+
+            if (ucenici[indeks].dodajOcjenu(ocjena)) {
+                poruka.innerHTML = "Ocjena je uspješno dodana!";
+                prikaziUcenike();
+            } else {
+                poruka.innerHTML =
+                    "Greška! Ocjena mora biti cijeli broj od 1 do 5.";
+            }
+        }
+
+        // Početni prikaz
+        prikaziUcenike();
+
+    </script>
+
+</body>
+</html>
