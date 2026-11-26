@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter Counter</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #b2c6e6;
+        font-family: Arial, sans-serif;
+        min-height: 100vh;
+      }
+
+      h1 {
+        font-size: 40px;
+        font-weight: 400;
+        margin: 10px 0 0 42px;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        padding-bottom: 25px;
+      }
+
+      .counter {
+        width: 286px;
+        height: 356px;
+        background-color: #ff3e46;
+        position: relative;
+        color: white;
+        padding: 15px;
+      }
+
+      .number {
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      .logo {
+        text-align: center;
+        color: #600d12;
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 0.9;
+        margin-top: 22px;
+        letter-spacing: -2px;
+        transform: scaleY(1.25);
+      }
+
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 171px;
+        left: 6px;
+        right: 6px;
+      }
+
+      .arrow {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: none;
+        background-color: #ffb0b0;
+        color: white;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .input-area {
+        width: 163px;
+        margin: 65px auto 0;
+      }
+
+      input {
+        width: 100%;
+        height: 24px;
+        padding: 5px 8px;
+        border: 1px solid #aaa;
+        outline: none;
+        font-size: 9px;
+        background-color: white;
+      }
+
+      .count {
+        font-size: 9px;
+        color: #ffc3c3;
+        margin-top: 6px;
+      }
+
+      .difficulty {
+        position: absolute;
+        bottom: 47px;
+        width: 100%;
+        left: 0;
+        text-align: center;
+        color: #641015;
+        font-size: 12px;
+        font-weight: 900;
+        transform: scaleY(1.2);
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 11px;
+        left: 12px;
+        right: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .copyright {
+        font-size: 5px;
+        font-weight: bold;
+      }
+
+      .dots {
+        display: flex;
+        gap: 3px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .dot {
+        width: 4px;
+        height: 4px;
+        background-color: #ffaaaa;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .dot.active {
+        background-color: white;
+      }
+
+      .sound {
+        width: 17px;
+        height: 17px;
+        background-color: #222;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 10px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 500px) {
+        h1 {
+          font-size: 30px;
+          margin-left: 20px;
+        }
+
+        .container {
+          margin-top: 50px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Letter counter</h1>
+
+    <div class="container">
+      <div class="counter">
+        <div class="number" id="number">03</div>
+
+        <div class="logo">
+          LETTER<br />
+          COUNTER
+        </div>
+
+        <div class="navigation">
+          <button class="arrow" onclick="previous()">‹</button>
+          <button class="arrow" onclick="next()">›</button>
+        </div>
+
+        <div class="input-area">
+          <input
+            type="text"
+            id="textInput"
+            placeholder="Upiši tekst..."
+            value="TheCodeCrumbs"
+            oninput="countLetters()"
+          />
+
+          <div class="count" id="count">Letter Count: 13</div>
+        </div>
+
+        <div class="difficulty" id="difficulty">DIFFICULTY: EASY</div>
+
+        <div class="footer">
+          <div class="copyright">© THECODECRUMBS</div>
+
+          <div class="dots" id="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <button class="sound" onclick="toggleSound()" id="sound">🔊</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Brojanje slova
+      function countLetters() {
+        let text = document.getElementById("textInput").value;
+
+        // Broje se samo slova, bez razmaka i brojeva
+        let letters = text.match(/\p{L}/gu);
+
+        let total = letters ? letters.length : 0;
+
+        document.getElementById("count").textContent = "Letter Count: " + total;
+      }
+
+      // Primjeri za unos
+      let examples = [
+        "TheCodeCrumbs",
+        "Hello World",
+        "JavaScript",
+        "Letter Counter",
+        "Frontend Development",
+        "HTML CSS JS",
+        "Programming",
+        "Web Design",
+        "Welcome!",
+      ];
+
+      let current = 0;
+
+      // Promjena primjera
+      function showExample() {
+        document.getElementById("textInput").value = examples[current];
+
+        document.getElementById("number").textContent = String(
+          current + 3,
+        ).padStart(2, "0");
+
+        countLetters();
+
+        let difficulty = current < 3 ? "EASY" : current < 6 ? "MEDIUM" : "HARD";
+
+        document.getElementById("difficulty").textContent =
+          "DIFFICULTY: " + difficulty;
+
+        let dots = document.querySelectorAll(".dot");
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === current);
+        });
+      }
+
+      // Sljedeći primjer
+      function next() {
+        current++;
+
+        if (current >= examples.length) {
+          current = 0;
+        }
+
+        showExample();
+      }
+
+      // Prethodni primjer
+      function previous() {
+        current--;
+
+        if (current < 0) {
+          current = examples.length - 1;
+        }
+
+        showExample();
+      }
+
+      // Zvuk uključen/isključen
+      let soundOn = true;
+
+      function toggleSound() {
+        soundOn = !soundOn;
+
+        document.getElementById("sound").textContent = soundOn ? "🔊" : "🔇";
+      }
+
+      // Pokretanje brojanja pri otvaranju stranice
+      countLetters();
+    </script>
+  </body>
+</html>

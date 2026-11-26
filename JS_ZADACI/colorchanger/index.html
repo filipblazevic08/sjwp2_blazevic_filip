@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Color Changer</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #b3c7e5;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        transition: background-color 0.5s ease;
+      }
+
+      .page-title {
+        font-size: 32px;
+        font-weight: 400;
+        margin: 42px 0 34px 53px;
+      }
+
+      .game-container {
+        width: 228px;
+        height: 285px;
+        background-color: #ff3e48;
+        margin: 0 auto;
+        position: relative;
+        color: #280c0c;
+        padding-top: 32px;
+        text-align: center;
+      }
+
+      .small-icon {
+        position: absolute;
+        top: 9px;
+        left: 9px;
+        color: white;
+        font-size: 12px;
+      }
+
+      h2 {
+        font-family: Impact, sans-serif;
+        font-size: 25px;
+        line-height: 0.95;
+        font-weight: 900;
+        transform: scaleX(0.85);
+        margin-top: 5px;
+      }
+
+      .arrows {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 137px;
+        left: 5px;
+        right: 5px;
+      }
+
+      .arrows button {
+        border: none;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 10px;
+        color: #ff3e48;
+        background: white;
+      }
+
+      #changeBtn {
+        position: absolute;
+        top: 165px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #111;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 7px 13px;
+        font-size: 7px;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      #changeBtn:hover {
+        background: #333;
+      }
+
+      .difficulty {
+        position: absolute;
+        top: 236px;
+        width: 100%;
+        font-family: Impact, sans-serif;
+        font-size: 10px;
+      }
+
+      .bottom-info {
+        position: absolute;
+        bottom: 8px;
+        left: 10px;
+        right: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .bottom-info span {
+        font-size: 4px;
+        color: white;
+      }
+
+      .dots {
+        display: flex;
+        gap: 3px;
+      }
+
+      .dots span {
+        width: 3px;
+        height: 3px;
+        background: white;
+        border-radius: 50%;
+      }
+
+      #soundBtn {
+        background: #222;
+        color: white;
+        border: none;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        font-size: 8px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 500px) {
+        .page-title {
+          font-size: 25px;
+          margin: 30px 15px;
+        }
+
+        .game-container {
+          margin-top: 40px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="page-title">Background color changer</h1>
+
+    <div class="game-container">
+      <div class="small-icon">♧</div>
+
+      <h2>
+        BACKGROUND<br />
+        COLOR CHANGER
+      </h2>
+
+      <div class="arrows">
+        <button id="previous">‹</button>
+        <button id="next">›</button>
+      </div>
+
+      <button id="changeBtn">CHANGE BACKGROUND</button>
+
+      <p class="difficulty">DIFFICULTY: <span id="difficulty">EASY</span></p>
+
+      <div class="bottom-info">
+        <span>THEBACKGROUND</span>
+
+        <div class="dots" id="dots"></div>
+
+        <button id="soundBtn">◖</button>
+      </div>
+    </div>
+
+    <script>
+      const colors = [
+        "#b3c7e5",
+        "#b8e0d2",
+        "#f6bd60",
+        "#cdb4db",
+        "#f28482",
+        "#84a59d",
+        "#90caf9",
+        "#f7ede2",
+      ];
+
+      let currentColor = 0;
+
+      const changeBtn = document.getElementById("changeBtn");
+      const previousBtn = document.getElementById("previous");
+      const nextBtn = document.getElementById("next");
+      const dots = document.getElementById("dots");
+
+      function changeBackground() {
+        currentColor = (currentColor + 1) % colors.length;
+
+        document.body.style.backgroundColor = colors[currentColor];
+
+        updateDots();
+      }
+
+      function updateDots() {
+        dots.innerHTML = "";
+
+        colors.forEach((color, index) => {
+          const dot = document.createElement("span");
+
+          dot.style.opacity = index === currentColor ? "1" : "0.4";
+
+          dots.appendChild(dot);
+        });
+      }
+
+      changeBtn.addEventListener("click", changeBackground);
+
+      nextBtn.addEventListener("click", () => {
+        currentColor = (currentColor + 1) % colors.length;
+
+        document.body.style.backgroundColor = colors[currentColor];
+
+        updateDots();
+      });
+
+      previousBtn.addEventListener("click", () => {
+        currentColor = (currentColor - 1 + colors.length) % colors.length;
+
+        document.body.style.backgroundColor = colors[currentColor];
+
+        updateDots();
+      });
+
+      document.getElementById("soundBtn").addEventListener("click", (event) => {
+        event.currentTarget.textContent =
+          event.currentTarget.textContent === "◖" ? "♪" : "◖";
+      });
+
+      updateDots();
+    </script>
+  </body>
+</html>
